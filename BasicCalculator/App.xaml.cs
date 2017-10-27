@@ -8,7 +8,7 @@ namespace BasicCalculator
 		{
 			InitializeComponent();
 
-			MainPage = new BasicCalculatorPage();
+			MainPage = new StartPage();
 		}
 
 		protected override void OnStart()

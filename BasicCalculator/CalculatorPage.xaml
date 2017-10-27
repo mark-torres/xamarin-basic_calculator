@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:local="clr-namespace:BasicCalculator"
+	Padding="10"
+	x:Class="BasicCalculator.CalculatorPage">
+	<StackLayout Orientation="Vertical">
+
+		<BoxView HeightRequest="30"/>
+
+		<local:BasicCalculator
+			HorizontalOptions="Center"
+			WidthRequest="300"
+			HeightRequest="400"/>
+
+		<StackLayout Orientation="Horizontal" 
+			HorizontalOptions="Center" 
+			WidthRequest="300">
+
+			<Button Text="Close" 
+				Clicked="Close_Clicked"
+				WidthRequest="120"/>
+
+			<BoxView HorizontalOptions="FillAndExpand"/>
+
+			<Button Text="Use result" 
+				WidthRequest="120"/>
+			
+		</StackLayout>
+		
+	</StackLayout>
+</ContentPage>

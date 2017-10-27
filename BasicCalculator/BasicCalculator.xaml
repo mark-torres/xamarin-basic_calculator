@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	BackgroundColor="DimGray"
+	x:Class="BasicCalculator.BasicCalculator">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" x:Key="LabelDisplay">
+				<Setter Property="TextColor" Value="#3f3e3f"/>
+				<Setter Property="BackgroundColor" Value="Gainsboro"/>
+			</Style>
+			<Style TargetType="Label" Class="LabelMathExpression" BasedOn="{StaticResource LabelDisplay}">
+				<Setter Property="FontSize" Value="18"/>
+			</Style>
+			<Style TargetType="Label" Class="LabelMathResult" BasedOn="{StaticResource LabelDisplay}">
+				<Setter Property="FontSize" Value="28"/>
+			</Style>
+
+			<!-- Buttons -->
+			<Style TargetType="Button" x:Key="ButtonBase">
+				<Setter Property="FontSize" Value="22"/>
+			</Style>
+			<Style TargetType="Button" BasedOn="{StaticResource ButtonBase}" Class="ButtonValue">
+				<Setter Property="BackgroundColor" Value="DarkGray"/>
+				<Setter Property="TextColor" Value="White"/>
+			</Style>
+			<Style TargetType="Button" BasedOn="{StaticResource ButtonBase}" Class="ButtonOperation">
+				<Setter Property="BackgroundColor" Value="Black"/>
+				<Setter Property="TextColor" Value="White"/>
+			</Style>
+			<Style TargetType="Button" BasedOn="{StaticResource ButtonBase}" Class="ButtonEdit">
+				<Setter Property="BackgroundColor" Value="SlateGray"/>
+				<Setter Property="TextColor" Value="White"/>
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+
+	<StackLayout Orientation="Vertical" Spacing="0" Margin="5">
+
+		<!-- Expression label -->
+
+		<Label x:Name="lblExpression" 
+			StyleClass="LabelMathExpression"
+			VerticalOptions="FillAndExpand"
+			HorizontalTextAlignment="End"
+			Text=""/>
+
+
+		<Label x:Name="lblResult"
+			StyleClass="LabelMathResult"
+			Text="0" 
+			HorizontalTextAlignment="End"/>
+
+		<!-- Buttons grid -->
+		
+		<Grid Margin="0,5,0,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+
+			<Label x:Name="lblError" Text="ERROR"
+				VerticalTextAlignment="Center"
+				HorizontalTextAlignment="Center"
+				TextColor="FireBrick"
+				BackgroundColor="Gainsboro"
+				Grid.ColumnSpan="2"
+				Grid.Row="0" Grid.Column="0"/>
+			<Button Text="C" StyleClass="ButtonEdit"
+				Clicked="BtnClear_Clicked"
+				Grid.Row="0" Grid.Column="2"/>
+			<Button Text="&#x2190;" StyleClass="ButtonEdit"
+				Clicked="BtnBackspace_Clicked"
+				Grid.Row="0" Grid.Column="3"/>
+
+			<Button Text="7" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="1" Grid.Column="0"/>
+			<Button Text="8" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="1" Grid.Column="1"/>
+			<Button Text="9" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="1" Grid.Column="2"/>
+			<Button Text="&#x00F7;" StyleClass="ButtonOperation"
+				Clicked="BtnDivide_Clicked"
+				Grid.Row="1" Grid.Column="3"/>
+
+			<Button Text="4" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="2" Grid.Column="0"/>
+			<Button Text="5" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="2" Grid.Column="1"/>
+			<Button Text="6" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="2" Grid.Column="2"/>
+			<Button Text="&#x00D7;" StyleClass="ButtonOperation"
+				Clicked="BtnMultiply_Clicked"
+				Grid.Row="2" Grid.Column="3"/>
+
+			<Button Text="1" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="3" Grid.Column="0"/>
+			<Button Text="2" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="3" Grid.Column="1"/>
+			<Button Text="3" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="3" Grid.Column="2"/>
+			<Button Text="-" StyleClass="ButtonOperation"
+				Clicked="BtnSubtract_Clicked"
+				Grid.Row="3" Grid.Column="3"/>			
+
+			<Button Text="0" StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="4" Grid.Column="0"/>
+			<Button Text="." StyleClass="ButtonValue"
+				Clicked="BtnValue_Clicked"
+				Grid.Row="4" Grid.Column="1"/>
+			<Button Text="=" StyleClass="ButtonOperation"
+				Clicked="BtnEquals_Clicked"
+				Grid.Row="4" Grid.Column="2"/>
+			<Button Text="+" StyleClass="ButtonOperation"
+				Clicked="BtnAdd_Clicked"
+				Grid.Row="4" Grid.Column="3"/>
+		</Grid>
+	</StackLayout>
+	
+</ContentView>
