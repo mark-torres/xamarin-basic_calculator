@@ -70,7 +70,7 @@
 				<ColumnDefinition Width="25*"/>
 			</Grid.ColumnDefinitions>
 
-			<Label x:Name="lblError" Text="ERROR"
+			<Label x:Name="lblError" Text=""
 				VerticalTextAlignment="Center"
 				HorizontalTextAlignment="Center"
 				TextColor="FireBrick"

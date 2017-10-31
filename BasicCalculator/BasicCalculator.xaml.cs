@@ -9,9 +9,10 @@ namespace BasicCalculator
 {
 	public partial class BasicCalculator : ContentView
 	{
-		private readonly Regex reBasicMath = new Regex(@"^(?:\d+(?:\.\d+)?)(?:[-+*/](?:\d+(?:\.\d+)?))*$");
+		readonly Regex reBasicMath = new Regex(@"^(?:\d+(?:\.\d+)?)(?:[-+*/](?:\d+(?:\.\d+)?))*$");
 
-		private string expressionDisplayed;
+		string expressionDisplayed;
+		string expression;
 
 		public BasicCalculator()
 		{
@@ -20,57 +21,84 @@ namespace BasicCalculator
 			expressionDisplayed = "";
 		}
 
+		double EvaluateExpression()
+		{
+			return 0;
+		}
+
 		void BtnValue_Clicked(object sender, System.EventArgs e)
 		{
 			var button = sender as Button;
 			if (button != null) {
-				expressionDisplayed = expressionDisplayed + button.Text;
+				expression = expression + button.Text;
 				DisplayExpression();
 			}
 		}
 
 		void BtnAdd_Clicked(object sender, System.EventArgs e)
 		{
-			expressionDisplayed = expressionDisplayed + " + ";
+			expression = expression + "+";
 			DisplayExpression();
 		}
 
 		void BtnSubtract_Clicked(object sender, System.EventArgs e)
 		{
-			expressionDisplayed = expressionDisplayed + " - ";
+			expression = expression + "-";
 			DisplayExpression();
 		}
 
 		void BtnMultiply_Clicked(object sender, System.EventArgs e)
 		{
-			expressionDisplayed = expressionDisplayed + " * ";
+			expression = expression + "*";
 			DisplayExpression();
 		}
 
 		void BtnDivide_Clicked(object sender, System.EventArgs e)
 		{
-			expressionDisplayed = expressionDisplayed + " / ";
+			expression = expression + "/";
 			DisplayExpression();
 		}
 
 		void BtnEquals_Clicked(object sender, System.EventArgs e)
 		{
-			Debug.WriteLine("Equals");
+			bool validExpression = reBasicMath.IsMatch(expression);
+			// validate expression
+			if(!validExpression) {
+				lblError.Text = "ERROR";
+			} else {
+				lblError.Text = " ";
+				// evaluate the expression
+				SimpleExpressionEvaluator evaluator = new SimpleExpressionEvaluator(expression);
+				double result = evaluator.Evaluate();
+				lblResult.Text = string.Format("{0}", result);
+			}
 		}
 
 		void BtnBackspace_Clicked(object sender, System.EventArgs e)
 		{
-			Debug.WriteLine("Backspace");
+			if(expression.Length > 0) {
+				expression = expression.Remove(expression.Length - 1);
+				DisplayExpression();
+			}
 		}
 
 		void BtnClear_Clicked(object sender, System.EventArgs e)
 		{
-			expressionDisplayed = "";
+			expression = "";
 			DisplayExpression();
+			lblResult.Text = "";
 		}
 
 		void DisplayExpression()
 		{
+			expressionDisplayed = expression;
+			if (expressionDisplayed.Length > 0) {
+				// add padding to operators
+				expressionDisplayed = expressionDisplayed.Replace("+"," + ");
+				expressionDisplayed = expressionDisplayed.Replace("-"," - ");
+				expressionDisplayed = expressionDisplayed.Replace("*"," * ");
+				expressionDisplayed = expressionDisplayed.Replace("/"," / ");
+			}
 			lblExpression.Text = expressionDisplayed;
 		}
 	}

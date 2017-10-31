@@ -53,6 +53,7 @@
     <Compile Include="BasicCalculator.xaml.cs">
       <DependentUpon>BasicCalculator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimpleExpressionEvaluator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
