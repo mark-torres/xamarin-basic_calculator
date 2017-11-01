@@ -10,6 +10,7 @@
 		<BoxView HeightRequest="30"/>
 
 		<local:BasicCalculator
+			x:Name="calculator"
 			HorizontalOptions="Center"
 			WidthRequest="300"
 			HeightRequest="400"/>
@@ -25,6 +26,7 @@
 			<BoxView HorizontalOptions="FillAndExpand"/>
 
 			<Button Text="Use result" 
+				Clicked="UseResult_Clicked"
 				WidthRequest="120"/>
 			
 		</StackLayout>

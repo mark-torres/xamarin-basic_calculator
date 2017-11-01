@@ -10,11 +10,28 @@ namespace BasicCalculator
 		public StartPage()
 		{
 			InitializeComponent();
+
+			double padding = 10;
+			double topPadding = (Device.RuntimePlatform == Device.iOS) ? (padding + 15) : padding;
+			Padding = new Thickness(padding, topPadding, padding, padding);
 		}
 
 		async void UseCalculator_Clicked(object sender, System.EventArgs e)
 		{
-			await Navigation.PushModalAsync(new CalculatorPage());
+			CalculatorPage calcPage = new CalculatorPage();
+			await Navigation.PushModalAsync(calcPage);
+
+			// set event handler
+			calcPage.UseResult += OnUseResult;
+		}
+
+		// event handler
+
+		private async void OnUseResult(object sender, Double result)
+		{
+			entryNumber.Text = result.ToString();
+			// close calculator page
+			await Navigation.PopModalAsync();
 		}
 	}
 }

@@ -14,6 +14,8 @@ namespace BasicCalculator
 		string expressionDisplayed;
 		string expression;
 
+		public double Result;
+
 		public BasicCalculator()
 		{
 			InitializeComponent();
@@ -69,8 +71,8 @@ namespace BasicCalculator
 				lblError.Text = " ";
 				// evaluate the expression
 				SimpleExpressionEvaluator evaluator = new SimpleExpressionEvaluator(expression);
-				double result = evaluator.Evaluate();
-				lblResult.Text = string.Format("{0}", result);
+				Result = evaluator.Evaluate();
+				lblResult.Text = Result.ToString();
 			}
 		}
 
